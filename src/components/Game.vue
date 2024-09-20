@@ -97,7 +97,7 @@ export default {
         },
         handleInput(index) {
             const value = this.guess[index];
-            if (value < 1 || value > 9) {
+            if (!value >= 1 && !value <= 9) {
                 this.guess[index] = null;
             } else if (value && index < this.guess.length - 1) {
                 this.$refs.inputs[index + 1].focus();

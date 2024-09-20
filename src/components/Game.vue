@@ -6,7 +6,7 @@
         <p>A - 数字和位置均正确的个数<br>B - 数字正确但位置不对的个数</p>
 
         <div v-if="!gameOver">
-            <input v-for="(value, index) in guess" :key="index" type="number" min="1" max="9" v-model="guess[index]"
+            <input v-for="(value, index) in guess" :key="index" type="text" min="1" max="9" v-model="guess[index]"
                 maxlength="1" @input="handleInput(index)" ref="inputs" @keydown.enter="handleEnter(index)"
                 @keydown.backspace="handleBackspace(index)" />
         </div>
@@ -63,11 +63,19 @@ export default {
                     numbers.push(num);
                 }
             }
+            console.debug(`Answer: ${numbers.join(' ')}`);
             return numbers;
         },
         submitGuess() {
-            const currentGuess = [...this.guess];
-            if (currentGuess.includes(null) || new Set(currentGuess).size !== 4) {
+            const currentGuess = [];
+            for (let guess of this.guess) {
+                if (['1','2','3','4','5','6','7','8','9'].includes(guess)) currentGuess.push(parseInt(guess));
+                else {
+                    alert('请输入四个不同的数字！');
+                    return;
+                }
+            }
+            if (new Set(currentGuess).size !== 4) {
                 alert('请输入四个不同的数字！');
                 return;
             }
@@ -96,8 +104,8 @@ export default {
             this.$refs.inputs[0].focus();
         },
         handleInput(index) {
-            const value = parseInt(this.guess[index]);
-            if (value < 1 || value > 9) {
+            const value = this.guess[index];
+            if (!['1','2','3','4','5','6','7','8','9'].includes(value)) {
                 this.guess[index] = null;
             } else if (value && index < this.guess.length - 1) {
                 this.$refs.inputs[index + 1].focus();

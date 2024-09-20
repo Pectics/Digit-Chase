@@ -3,6 +3,7 @@
         <h1>数位追踪</h1>
         <h2>Digit Chase</h2>
         <p>系统已生成四位互不相同的非零数字<br>尝试在10次尝试内猜中！</p>
+        <p>A - 数字和位置均正确的个数<br>B - 数字正确但位置不对的个数</p>
 
         <div v-if="!gameOver">
             <input v-for="(value, index) in guess" :key="index" type="number" min="1" max="9" v-model="guess[index]"
@@ -77,8 +78,7 @@ export default {
             currentGuess.forEach((num, index) => {
                 if (num === this.target[index]) {
                     A++;
-                }
-                if (this.target.includes(num)) {
+                } else if (this.target.includes(num)) {
                     B++;
                 }
             });

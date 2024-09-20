@@ -20,14 +20,15 @@
         <button v-if="!gameOver" @click="submitGuess" class="commit">提交猜测</button>
 
         <ul>
-                <li v-for="(attempt, index) in attempts" :key="index">
-                    <strong>猜测{{ ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][index]
-                        }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{
-                            attempt.guess.join(' &nbsp;') }} &nbsp;- &nbsp;{{ attempt.A }}A {{ attempt.B }}B
-                </li>
-            </ul>
+            <li v-for="(attempt, index) in attempts" :key="index">
+                <strong>猜测{{ ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][index]
+                    }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{
+                        attempt.guess.join(' &nbsp;') }} &nbsp;- &nbsp;{{ attempt.A }}A {{ attempt.B }}B
+            </li>
+        </ul>
 
-        <div style="color: gray; font-size: small; margin-top: 10px;">Copyright &copy; Pectics 2024. All rights reserved.</div>
+        <div style="color: gray; font-size: small; margin-top: 10px;">Copyright &copy; Pectics 2024. All rights
+            reserved.</div>
     </div>
 </template>
 
@@ -76,7 +77,8 @@ export default {
             currentGuess.forEach((num, index) => {
                 if (num === this.target[index]) {
                     A++;
-                } else if (this.target.includes(num)) {
+                }
+                if (this.target.includes(num)) {
                     B++;
                 }
             });

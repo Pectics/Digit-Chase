@@ -19,17 +19,15 @@
 
         <button v-if="!gameOver" @click="submitGuess" class="commit">提交猜测</button>
 
-        <div style="color: gray; font-size: small;">Copyright &copy; Pectics 2024. All rights reserved.</div>
-
-        <div class="attempts">
-            <ul>
+        <ul>
                 <li v-for="(attempt, index) in attempts" :key="index">
                     <strong>猜测{{ ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][index]
                         }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{
                             attempt.guess.join(' &nbsp;') }} &nbsp;- &nbsp;{{ attempt.A }}A {{ attempt.B }}B
                 </li>
             </ul>
-        </div>
+
+        <div style="color: gray; font-size: small; margin-top: 10px;">Copyright &copy; Pectics 2024. All rights reserved.</div>
     </div>
 </template>
 
@@ -157,7 +155,7 @@ input[type='number']::-webkit-outer-spin-button {
 input {
     width: 60px;
     height: 60px;
-    margin: 10px;
+    margin: 5px;
     text-align: center;
     font-size: 2.5rem;
     border: 2px solid #4a90e2;
@@ -178,7 +176,7 @@ input:focus {
 button {
     padding: 10px 20px;
     margin: 10px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: white;
     border: none;
     border-radius: 5px;
@@ -215,14 +213,5 @@ li {
 p {
     font-size: 1.1rem;
     color: #999;
-}
-
-.attempts {
-    position: absolute;
-    top: 30%;
-    right: 100px;
-    max-width: 200px;
-    padding: 10px;
-    z-index: 10;
 }
 </style>
